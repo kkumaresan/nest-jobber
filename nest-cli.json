@@ -1,0 +1,25 @@
+{
+  "projects": {
+    "libs/nestjs": {
+      "type": "library",
+      "root": "libs/libs/nestjs",
+      "entryFile": "index",
+      "sourceRoot": "libs/libs/nestjs/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/libs/nestjs/tsconfig.lib.json"
+      }
+    },
+    "nestjs": {
+      "type": "library",
+      "root": "libs/nestjs",
+      "entryFile": "index",
+      "sourceRoot": "libs/nestjs/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/nestjs/tsconfig.lib.json"
+      }
+    }
+  },
+  "compilerOptions": {
+    "webpack": true
+  }
+}
