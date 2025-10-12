@@ -56,6 +56,12 @@ npm i --save-dev @types/passport-jwt
 npm i --save cookie-parser
 npm i --save-dev @types/cookie-parser
 
+### Jobs
+
+nx g application apps/jobber-jobs
+nx serve jobber-jobs
+npm i --save @golevelup/nestjs-discovery
+
 ---
 
 mutation {
