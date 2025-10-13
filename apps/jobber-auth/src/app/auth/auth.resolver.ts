@@ -1,6 +1,7 @@
 import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
 import { User } from '../users/models/user.model';
 import { LoginInput } from './dto/login.input';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { GqlContext } from '@jobber/nestjs';
 import { AuthService } from './auth.service';
 
