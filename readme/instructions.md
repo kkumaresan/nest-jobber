@@ -62,23 +62,61 @@ nx g application apps/jobber-jobs
 nx serve jobber-jobs
 npm i --save @golevelup/nestjs-discovery
 
+### Pulsar
+
+nx g library pulsar
+nx g library libs/pulsar
+npm install pulsar-client
+
+### Pulsar Docker
+
+$ pulsar-admin topics list public/default
+persistent://public/default/Fibonacci
+
+$ pulsar-admin topics stats persistent://public/default/Fibonacci
+
 ---
 
+```
+AUTH
 mutation {
-createUser(createUserInput: {
-email: "kumar@kk.com"
-password: "Strongpass1@3"
-}) {
-id
-email
-}
+  createUser(createUserInput: {
+    email: "kumar@kk.com"
+    password: "Strongpass1@3"
+  }) {
+    id
+    email
+  }
 }
 
 mutation {
-login(loginInput: {
-email: "kumar@kk.com"
-password: "Strongpass1@3"
-}) {
-id
+  login(loginInput: {
+    email: "kumar@kk.com"
+    password: "Strongpass1@3"
+  }) {
+    id
+  }
 }
+
+query {
+  users {
+    id
+    email
+  }
 }
+
+JOBS
+query {
+  jobs {
+    name
+    description
+  }
+}
+
+mutation {
+ 	executeJob(executeJobInput: { name: "Fibonacci" }) {
+  	name
+	}
+}
+
+```
