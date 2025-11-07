@@ -1,7 +1,7 @@
 import { Producer } from 'pulsar-client';
 import { plainToInstance } from 'class-transformer';
-import { validate } from 'class-validator';
 import { PulsarClient, serialize } from '@jobber/pulsar';
+import { validate } from 'class-validator';
 import { BadRequestException } from '@nestjs/common';
 
 export abstract class AbstractJob<T extends object> {
@@ -15,6 +15,16 @@ export abstract class AbstractJob<T extends object> {
     if (!this.producer) {
       this.producer = await this.pulsarClient.createProducer(job);
     }
+    if (Array.isArray(data)) {
+      for (const message of data) {
+        await this.send(message);
+      }
+      return;
+    }
+    await this.send(data);
+  }
+
+  private async send(data: T) {
     await this.producer.send({ data: serialize(data) });
   }
 
@@ -22,7 +32,7 @@ export abstract class AbstractJob<T extends object> {
     const errors = await validate(plainToInstance(this.messageClass, data));
     if (errors.length) {
       throw new BadRequestException(
-        `Job Data Validation failed: ${JSON.stringify(errors)}`
+        `Job data is invalid: ${JSON.stringify(errors)}`
       );
     }
   }

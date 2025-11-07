@@ -119,4 +119,10 @@ mutation {
 	}
 }
 
+mutation {
+ 	executeJob(executeJobInput: { name: "Fibonacci", data: { iterations: 30 }}) {
+  	name
+	}
+}
+
 ```
